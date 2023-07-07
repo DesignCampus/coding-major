@@ -1,6 +1,6 @@
-# DESIGN CAMPUS 教材（コーディング前期）
+# DESIGN CAMPUS 教材（コーディング専攻）
 
-コーディングのライブ授業前期の教材です。  
+コーディング専攻のライブ授業教材です。  
 
 ## ファイル構成
 ```
@@ -10,14 +10,9 @@
 │   │   ├── 
 │   │   └── 
 │   ├── my-theme.css : reveal.js用のCSS
-│   ├── coding-00-env.md : 講義資料のMarkdown(ファイルの命名はcoding-講義回数-内容)
-│   ├── coding-01-html.md
+│   ├── coding-01-○○.md
 │   ├── 
-│
-├── example : 例題やサンプルファイル用のフォルダ
-│   ├── 
-│   ├── 
-│   ├── 
+
 │
 ├── .gitignore : Gitの除外設定ファイル
 ├── README.md : このファイル
