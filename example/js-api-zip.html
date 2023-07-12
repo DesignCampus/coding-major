@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>郵便番号から住所</title>
+	<style>
+		*:where(:not(iframe,canvas,img,svg,video):not(svg *,symbol *)){all:unset;display:revert}*,*::before,*::after{box-sizing:border-box}a,button{cursor:revert}ol,ul,menu{list-style:none}img{max-width:100%}table{border-collapse:collapse}textarea{white-space:revert}meter{-webkit-appearance:revert;appearance:revert}::placeholder{color:unset}:where([hidden]){display:none}:where([contenteditable]){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space}:where([draggable="true"]){-webkit-user-drag:element}
+	</style>
+	<style>
+		input[type="text"] {
+			border: 1px solid #000;
+		}
+		.wrapper {
+			width: min(50vw, 400px);
+			margin: 40px auto;
+		}
+
+		.box {
+			margin-top: 20px;
+		}
+
+		.zip_code {
+			display: block;
+			width: 100%;
+			padding: .5em;
+		}
+		.resultsArea {
+			margin-top: 40px;
+			padding: 1rem;
+			background: #eee;
+		}
+		.submit {
+			display: block;
+			margin: 20px auto 0;
+			padding: .5rem 1rem;
+			background: #ddd;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>郵便番号から住所</h1>
+		<div class="box">
+			<input type="text" name="zip" id="js-zip" class="zip_code">
+			<button id="js-submit" class="submit">検索</button>
+		</div>
+		<div class="resultsArea" id="js-results"></div>
+	</div>
+
+
+	<script>
+		const zip = document.getElementById('js-zip'),
+			resultsArea = document.getElementById('js-results'),
+			btn = document.getElementById('js-submit');
+
+		btn.addEventListener('click', () => {
+
+			const url = "https://zipcloud.ibsnet.co.jp/api/search?zipcode=" + zip.value;
+
+			// fetchはJSでHTTP通信を利用して情報を取得するスタンダードな手段
+			fetch(url)
+				.then((response) => {
+					// APIからかえってきたデータを読みこんで解析してオブジェクトにして渡す
+					return response.json(); 
+				})
+				.then((data) => {
+					const resultsStr = data.results[0].address1 + data.results[0].address2 + data.results[0].address3;
+					resultsArea.innerText = resultsStr;
+				});
+		});
+
+
+		/* クジラAPI版 */
+		// var url = 'https://api.aoikujira.com/zip/zip.php?fmt=json&zn=192-0084';
+		// fetch(url)
+		// 	.then((response) => {
+		// 		return response.json();
+		// 	})
+		// 	.then((data) => {
+		// 		console.log(data);
+		// 	});
+
+	</script>
+</body>
+
+</html>

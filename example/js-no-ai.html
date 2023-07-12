@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Classの付け替え</title>
+	<style>
+		*:where(:not(iframe,canvas,img,svg,video):not(svg *,symbol *)){all:unset;display:revert}*,*::before,*::after{box-sizing:border-box}a,button{cursor:revert}ol,ul,menu{list-style:none}img{max-width:100%}table{border-collapse:collapse}textarea{white-space:revert}meter{-webkit-appearance:revert;appearance:revert}::placeholder{color:unset}:where([hidden]){display:none}:where([contenteditable]){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space}:where([draggable="true"]){-webkit-user-drag:element}
+	</style>
+	<style>
+		input[type="text"] {
+			border: 1px solid #000;
+		}
+		.wrapper {
+			width: min(50vw, 400px);
+			margin: 40px auto;
+		}
+		.reply {
+			position: relative;
+			width: fit-content;
+			margin-left: 20px;
+			padding: 1rem;
+			background: #eee;
+			border-radius: 4px;
+			/* border: 1px solid #000; */
+			filter: drop-shadow(0px 0px 1px #000);
+		}
+		.reply::before {
+			content: "";
+			display: inline-block;
+			position: absolute;
+			bottom: 8px;
+			left: -28px;
+			width: 0;
+			height: 0;
+			border: 8px solid transparent;
+			border-right: 20px solid #eee;
+		}
+
+		.talk {
+			margin-top: 20px;
+		}
+
+		.msg {
+			display: block;
+			width: 100%;
+			padding: .5em;
+		}
+
+		.submit {
+			display: block;
+			margin: 20px auto 0;
+			padding: .5rem 1rem;
+			background: #ddd;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div id="js-reply" class="reply">
+			こんにちは
+		</div>
+		<div class="talk">
+			<input type="text" name="" id="js-msg" class="msg">
+			<button id="js-submit" class="submit">話す</button>
+		</div>
+	</div>
+
+
+	<script>
+		//talk = ["こんにちわ", "さようなら", "はい", "いいえ", "しらんがな", "いってることがわかりません", "おなかすいた", "たのしい！！", "つまんない・・・", "うれしい(^^♪", "ききたくない！", "話す気ある？", "もっともっと！"];
+		talk = ["こんにちわ", "さようなら", "はい", "いいえ"];
+		const rep =  document.getElementById('js-reply'),
+			msg = document.getElementById('js-msg'),
+			btn = document.getElementById('js-submit');
+
+			btn.addEventListener('click', ()=> {
+				if(msg.value) {
+					talk.push(msg.value)
+					msg.value = '';
+					let nnum = Math.floor(talk.length * Math.random());
+					console.table(nnum);
+					rep.innerText = talk[nnum];
+					console.table(talk);
+				} else {
+					rep.innerText ="入力してください";
+				}
+			})
+
+	</script>
+</body>
+
+</html>

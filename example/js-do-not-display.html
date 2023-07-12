@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>一定期間広告を消すデモ</title>
+	<style>
+		*:where(:not(iframe,canvas,img,svg,video):not(svg *,symbol *)){all:unset;display:revert}*,*::before,*::after{box-sizing:border-box}a,button{cursor:revert}ol,ul,menu{list-style:none}img{max-width:100%}table{border-collapse:collapse}textarea{white-space:revert}meter{-webkit-appearance:revert;appearance:revert}::placeholder{color:unset}:where([hidden]){display:none}:where([contenteditable]){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space}:where([draggable="true"]){-webkit-user-drag:element}
+	</style>
+	<style>
+		.wrapper {
+			& h1 {
+				font-size: 2.4rem;
+				font-weight: 700;
+			}
+		}
+		.dummyText {
+			line-height: 1.6;
+			> p {
+				margin-top: 10px;
+			}
+
+		}
+		.ads {
+			position: fixed;
+			display: none;
+			bottom: 0;
+			left: 0;
+			width: 240px;
+			height: auto;
+			> img {
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		.ads.is-show {
+			display: block;
+		}
+		.ads_close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 30px;
+			height: 30px;
+			background: #000;
+			border-radius: 50%;
+			translate: 50% -50%;
+			cursor: pointer;
+		}
+		.ads_close::before,
+		.ads_close::after {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 50%;
+			height: 2px;
+			background: #fff;
+			translate: 50%;
+		}
+		.ads_close::before {
+			rotate: 45deg;
+		}
+		.ads_close::after {
+			rotate: -45deg;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>一定期間広告を消すデモ</h1>
+		<div class="dummyText">
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+			<p>いつまでも出てる広告</p>
+			<p>スクロールについてくる広告</p>
+			<p>消せる広告</p>
+		</div>
+		<div class="ads is-show" id="js-ads">
+			<button class="ads_close" id="js-close" aria-label="広告を閉じる"></button>
+			<img src="./img/dummy_ads.jpg" width="1600" height="900" alt="" decoding="async">
+		</div>
+	</div>
+
+
+<script>
+	const ads = document.getElementById('js-ads');
+	const closeBtn = document.getElementById('js-close');
+
+	/**
+	 * 閉じるボタンの処理
+	 */
+	closeBtn.addEventListener('click', ()=>{
+		ads.classList.remove('is-show');
+	})
+</script>
+</body>
+
+</html>
